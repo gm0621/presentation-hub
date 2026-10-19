@@ -3,9 +3,9 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="description" content="Gimmy 的網頁簡報總覽，依 TM 演講會、東海大學、NP 與 Coffee Time Share 分類整理。">
+  <meta name="description" content="GM 的分享知識庫，依 TM 演講會、東海大學與 NP 分享場域分類整理。">
   <meta name="theme-color" content="#17324d">
-  <title>Gimmy 網頁簡報總覽</title>
+  <title>GM 的分享知識庫</title>
   <style>
     :root {
       --paper: #f5f1e8;
@@ -58,9 +58,18 @@
     .search::placeholder { color: #89929a; }
     .search-label { display: grid; place-items: center; width: 36px; height: 36px; color: var(--muted); font-size: 19px; }
     .result-count { white-space: nowrap; color: var(--muted); font-size: 13px; font-weight: 800; }
+    .group-actions { display: flex; gap: 7px; }
+    .text-button { min-height: 36px; padding: 6px 11px; border: 1px solid var(--line); border-radius: 9px; background: var(--surface); color: var(--ink); font: inherit; font-size: 12px; font-weight: 800; cursor: pointer; }
+    .text-button:hover, .text-button:focus-visible { border-color: var(--accent); color: var(--accent); }
     .group { scroll-margin-top: 24px; margin-top: 72px; }
     .group[hidden], .presentation[hidden] { display: none; }
-    .group-head { display: grid; grid-template-columns: 88px 1fr auto; align-items: end; gap: 20px; padding-bottom: 16px; border-bottom: 2px solid var(--ink); margin-bottom: 22px; }
+    .group-head { display: grid; grid-template-columns: 88px 1fr auto 40px; align-items: end; gap: 20px; padding-bottom: 16px; border-bottom: 2px solid var(--ink); cursor: pointer; list-style: none; }
+    .group-head::-webkit-details-marker { display: none; }
+    .group-head::after { content: "+"; display: grid; place-items: center; width: 36px; height: 36px; border: 1px solid var(--line); border-radius: 50%; color: var(--accent); font-size: 22px; line-height: 1; transition: transform .2s ease, background .2s ease; }
+    .group-head:hover::after, .group-head:focus-visible::after { background: var(--accent-soft); }
+    .group-head:focus-visible { outline: 3px solid rgba(216,83,63,.32); outline-offset: 5px; }
+    .group[open] > .group-head { margin-bottom: 22px; }
+    .group[open] > .group-head::after { content: "−"; transform: rotate(180deg); }
     .group-no { color: var(--accent); font: 800 14px/1 ui-monospace, SFMono-Regular, Menlo, monospace; letter-spacing: .08em; }
     h2 { margin: 0; font-family: ui-serif, "Noto Serif TC", serif; font-size: clamp(30px, 5vw, 48px); line-height: 1.05; letter-spacing: -.035em; }
     .group-meta { color: var(--muted); font-size: 13px; font-weight: 800; }
@@ -98,19 +107,24 @@
       main { padding-top: 48px; }
       .hero { grid-template-columns: 1fr; gap: 32px; }
       .stats { max-width: 360px; }
-      .group-head { grid-template-columns: 52px 1fr; }
+      .group-head { grid-template-columns: 52px 1fr 40px; }
       .group-meta { grid-column: 2; }
+      .group-head::after { grid-column: 3; grid-row: 1 / span 2; }
       .cards, .lesson-list { grid-template-columns: 1fr; }
     }
     @media (max-width: 520px) {
       .masthead-inner, main, footer { width: min(calc(100% - 24px), var(--max)); }
       .brand-text { font-size: 14px; }
       h1 { font-size: 47px; }
-      .toolbar { align-items: stretch; }
+      .toolbar { align-items: stretch; flex-wrap: wrap; }
+      .search { min-width: calc(100% - 56px); }
+      .group-actions { width: 100%; }
+      .text-button { flex: 1; min-height: 44px; }
       .result-count { display: none; }
       .group { margin-top: 58px; }
-      .group-head { grid-template-columns: 1fr; gap: 8px; }
+      .group-head { grid-template-columns: 1fr 40px; gap: 8px; }
       .group-meta { grid-column: 1; }
+      .group-head::after { grid-column: 2; grid-row: 1 / span 3; }
       .presentation { padding: 21px; }
       footer { flex-direction: column; }
     }
@@ -124,6 +138,7 @@
       main { width: 100%; padding: 0; }
       .hero { margin-bottom: 30px; }
       .group { break-before: page; margin-top: 32px; }
+      .group > *:not(summary) { display: block !important; }
       .presentation { box-shadow: none; break-inside: avoid; }
     }
   </style>
@@ -132,9 +147,9 @@
   <a class="skip-link" href="#content">跳到主要內容</a>
   <header class="masthead">
     <div class="masthead-inner">
-      <a class="brand" href="#top" aria-label="回到頁首"><span class="brand-mark">G</span><span class="brand-text">Gimmy Presentation Hub</span></a>
+      <a class="brand" href="#top" aria-label="回到頁首"><span class="brand-mark">GM</span><span class="brand-text">GM 的分享知識庫</span></a>
       <nav class="top-nav" aria-label="分類捷徑">
-        <a href="#tm">TM 演講會</a><a href="#thu">東海大學</a><a href="#np">NP</a><a href="#coffee">Coffee Time</a>
+        <a href="#tm">TM 演講會</a><a href="#thu">東海大學</a><a href="#np">NP／ISMS</a><a href="#coffee">NP／Coffee Time</a>
       </nav>
     </div>
   </header>
@@ -143,7 +158,7 @@
     <section class="hero" id="top">
       <div>
         <p class="eyebrow">Talks · Courses · Briefings</p>
-        <h1>網頁簡報<br>一站整理</h1>
+        <h1>GM 的<br>分享知識庫</h1>
         <p class="intro">依分享場域與使用情境分類，從演講、課程到公司宣導，快速找到簡報並直接開啟。</p>
       </div>
       <div class="stats" aria-label="簡報統計">
@@ -156,10 +171,14 @@
       <label class="search-label" for="search" aria-hidden="true">⌕</label>
       <input class="search" id="search" type="search" autocomplete="off" placeholder="搜尋簡報、課程或主題…" aria-label="搜尋簡報">
       <span class="result-count" id="resultCount" aria-live="polite">共 12 份</span>
+      <div class="group-actions" aria-label="群組顯示控制">
+        <button class="text-button" id="expandAll" type="button">全部展開</button>
+        <button class="text-button" id="collapseAll" type="button">全部收合</button>
+      </div>
     </div>
 
-    <section class="group" id="tm" data-group="tm">
-      <header class="group-head"><span class="group-no">GROUP 01</span><h2>TM 演講會</h2><span class="group-meta">3 份簡報</span></header>
+    <details class="group" id="tm" data-group="tm" open>
+      <summary class="group-head"><span class="group-no">GROUP 01</span><h2>TM 演講會</h2><span class="group-meta">3 份簡報</span></summary>
       <div class="cards">
         <article class="presentation" data-search="podcast 分享 tm 演講會 不一定要上架 錄音 笑點">
           <div class="card-top"><span class="tag">Podcast／分享</span><time class="date">2026-09-23</time></div>
@@ -178,10 +197,10 @@
           <div class="actions"><a class="button primary" href="https://gm0621.github.io/ai-wealth-talk/" target="_blank" rel="noopener">開啟簡報 ↗</a><a class="button" href="https://github.com/gm0621/ai-wealth-talk" target="_blank" rel="noopener">GitHub</a></div>
         </article>
       </div>
-    </section>
+    </details>
 
-    <section class="group" id="thu" data-group="thu">
-      <header class="group-head"><span class="group-no">GROUP 02</span><h2>東海大學</h2><span class="group-meta">課程 6 ＋ 講座 1</span></header>
+    <details class="group" id="thu" data-group="thu" open>
+      <summary class="group-head"><span class="group-no">GROUP 02</span><h2>東海大學</h2><span class="group-meta">課程 6 ＋ 講座 1</span></summary>
       <div class="subgroup">
         <h3 class="subgroup-title">課程</h3>
         <div class="cards">
@@ -212,10 +231,10 @@
           </article>
         </div>
       </div>
-    </section>
+    </details>
 
-    <section class="group" id="np" data-group="np">
-      <header class="group-head"><span class="group-no">GROUP 03</span><h2>NP</h2><span class="group-meta">ISMS · 1 份簡報</span></header>
+    <details class="group" id="np" data-group="np" open>
+      <summary class="group-head"><span class="group-no">GROUP 03 · NP</span><h2>NP／ISMS</h2><span class="group-meta">1 份簡報</span></summary>
       <div class="subgroup">
         <h3 class="subgroup-title">ISMS</h3>
         <div class="cards">
@@ -227,24 +246,24 @@
           </article>
         </div>
       </div>
-    </section>
+    </details>
 
-    <section class="group" id="coffee" data-group="coffee">
-      <header class="group-head"><span class="group-no">GROUP 04</span><h2>Coffee Time Share</h2><span class="group-meta">1 份簡報</span></header>
+    <details class="group" id="coffee" data-group="coffee" open>
+      <summary class="group-head"><span class="group-no">GROUP 04 · NP</span><h2>NP／Coffee Time Share</h2><span class="group-meta">1 份簡報</span></summary>
       <div class="cards">
-        <article class="presentation wide" data-search="coffee time share 故事 spa 經歷 說成 被記住的故事 分享">
+        <article class="presentation wide" data-search="np coffee time share 故事 spa 經歷 說成 被記住的故事 分享">
           <div class="card-top"><span class="tag">故事表達</span><time class="date">2026-09-10</time></div>
           <h3>故事 SPA｜把經歷，說成被記住的故事</h3>
           <p class="description">用清楚的故事結構整理經歷，讓分享不只被聽見，也能被記住。</p>
           <div class="actions"><a class="button primary" href="https://gm0621.github.io/story-spa/" target="_blank" rel="noopener">開啟簡報 ↗</a><a class="button" href="https://github.com/gm0621/story-spa" target="_blank" rel="noopener">GitHub</a></div>
         </article>
       </div>
-    </section>
+    </details>
 
     <div class="empty" id="emptyState"><strong>找不到符合的簡報</strong><br>換個關鍵字，或清除搜尋再看看。</div>
   </main>
 
-  <footer><span>Gimmy Presentation Hub · 2026</span><span>集中整理，內容仍由各簡報 Repository 維護。</span></footer>
+  <footer><span>GM 的分享知識庫 · 2026</span><span>集中整理，內容仍由各簡報 Repository 維護。</span></footer>
 
   <script>
     const search = document.querySelector('#search');
@@ -252,6 +271,8 @@
     const groups = [...document.querySelectorAll('.group')];
     const resultCount = document.querySelector('#resultCount');
     const emptyState = document.querySelector('#emptyState');
+    const expandAll = document.querySelector('#expandAll');
+    const collapseAll = document.querySelector('#collapseAll');
 
     function normalize(value) {
       return value.toLocaleLowerCase('zh-Hant').replace(/\s+/g, ' ').trim();
@@ -265,12 +286,22 @@
         card.hidden = !matches;
         if (matches) visibleDecks += Number(card.querySelectorAll('.lesson-link').length || 1);
       });
-      groups.forEach(group => { group.hidden = !group.querySelector('.presentation:not([hidden])'); });
+      groups.forEach(group => {
+        const hasMatch = Boolean(group.querySelector('.presentation:not([hidden])'));
+        group.hidden = !hasMatch;
+        if (query && hasMatch) group.open = true;
+      });
       resultCount.textContent = `共 ${visibleDecks} 份`;
       emptyState.classList.toggle('visible', visibleDecks === 0);
     }
 
     search.addEventListener('input', updateResults);
+    expandAll.addEventListener('click', () => groups.filter(group => !group.hidden).forEach(group => { group.open = true; }));
+    collapseAll.addEventListener('click', () => groups.filter(group => !group.hidden).forEach(group => { group.open = false; }));
+    window.addEventListener('hashchange', () => {
+      const target = document.querySelector(location.hash);
+      if (target?.matches('.group')) target.open = true;
+    });
   </script>
 </body>
 </html>
