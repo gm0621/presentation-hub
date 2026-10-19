@@ -84,6 +84,9 @@
     .card-top { display: flex; justify-content: space-between; gap: 18px; align-items: flex-start; }
     .tag { display: inline-flex; min-height: 28px; align-items: center; padding: 2px 10px; border-radius: 999px; background: var(--accent-soft); color: #9d3324; font-size: 12px; font-weight: 900; letter-spacing: .04em; }
     .date { color: var(--muted); font: 700 12px/1.4 ui-monospace, SFMono-Regular, Menlo, monospace; }
+    .host { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px; margin: 18px 0 0; color: var(--ink); font-size: 14px; font-weight: 850; }
+    .host span { color: var(--accent); font: 800 11px/1.4 ui-monospace, SFMono-Regular, Menlo, monospace; letter-spacing: .08em; }
+    .host + h3 { margin-top: 6px; }
     h3 { margin: 22px 0 10px; font-size: clamp(23px, 3vw, 32px); line-height: 1.18; letter-spacing: -.03em; text-wrap: pretty; }
     .description { margin: 0; color: var(--muted); max-width: 68ch; }
     .actions { margin-top: auto; padding-top: 24px; display: flex; flex-wrap: wrap; gap: 10px; }
@@ -180,9 +183,10 @@
     <details class="group" id="tm" data-group="tm" open>
       <summary class="group-head"><span class="group-no">GROUP 01</span><h2>TM 演講會</h2><span class="group-meta">3 份簡報</span></summary>
       <div class="cards">
-        <article class="presentation" data-search="podcast 分享 tm 演講會 不一定要上架 錄音 笑點">
+        <article class="presentation" data-search="podcast 分享 tm 演講會 美好食光演講會 不一定要上架 錄音 笑點">
           <div class="card-top"><span class="tag">Podcast／分享</span><time class="date">2026-09-23</time></div>
-          <h3>Gimmy 的簡報分享</h3>
+          <p class="host"><span>邀請單位</span>美好食光演講會</p>
+          <h3>不一定要上架，也能開始 Podcast</h3>
           <p class="description">從零開始 Podcast 的兩個版本：互動錄音架構，以及笑點加強版。</p>
           <ul class="lesson-list" aria-label="Podcast 簡報">
             <li><a class="lesson-link" href="https://gm0621.github.io/ppt_shared/podcast-start/" target="_blank" rel="noopener"><span class="lesson-no">01</span><span class="lesson-name">互動版・錄音架構</span><span class="arrow">↗</span></a></li>
@@ -190,8 +194,9 @@
           </ul>
           <div class="actions"><a class="button" href="https://github.com/gm0621/ppt_shared" target="_blank" rel="noopener">GitHub Repository ↗</a></div>
         </article>
-        <article class="presentation" data-search="ai 創富 專題演講 tm 演講會 財富 toastmasters">
+        <article class="presentation" data-search="ai 創富 創富演講會 專題演講 tm 演講會 財富 toastmasters">
           <div class="card-top"><span class="tag">專題演講</span><time class="date">2026-10-19</time></div>
+          <p class="host"><span>邀請單位</span>創富演講會</p>
           <h3>當 AI 什麼都能做，我們還能靠什麼創造財富？</h3>
           <p class="description">AI 時代，最值錢的是把想法變成結果的人。</p>
           <div class="actions"><a class="button primary" href="https://gm0621.github.io/ai-wealth-talk/" target="_blank" rel="noopener">開啟簡報 ↗</a><a class="button" href="https://github.com/gm0621/ai-wealth-talk" target="_blank" rel="noopener">GitHub</a></div>
@@ -225,6 +230,7 @@
         <div class="cards">
           <article class="presentation wide" data-search="東海大學 講座 教學 產品實驗 快速原型 洞察 證據">
             <div class="card-top"><span class="tag">產品開發進階</span><time class="date">2026-10-19</time></div>
+            <p class="host"><span>邀請單位</span>東海大學</p>
             <h3>從洞察到證據｜產品實驗與快速原型</h3>
             <p class="description">把模糊的產品想法轉成可驗證假設，以快速原型累積能支持決策的證據。</p>
             <div class="actions"><a class="button primary" href="https://gm0621.github.io/thu-product-evidence-courseware/" target="_blank" rel="noopener">開啟簡報 ↗</a><a class="button" href="https://github.com/gm0621/thu-product-evidence-courseware" target="_blank" rel="noopener">GitHub</a></div>
