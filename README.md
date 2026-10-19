@@ -4,8 +4,7 @@
 
 - TM 演講會
 - 東海大學課程與講座
-- NP／ISMS 公司宣導
-- NP／Coffee Time Share
+- NP（ISMS 公司宣導、Coffee Time Share）
 
 網站支援群組展開／收合與即時關鍵字搜尋，方便簡報持續增加後仍能快速找到內容。
 

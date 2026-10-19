@@ -149,7 +149,7 @@
     <div class="masthead-inner">
       <a class="brand" href="#top" aria-label="回到頁首"><span class="brand-mark">GM</span><span class="brand-text">GM 的分享知識庫</span></a>
       <nav class="top-nav" aria-label="分類捷徑">
-        <a href="#tm">TM 演講會</a><a href="#thu">東海大學</a><a href="#np">NP／ISMS</a><a href="#coffee">NP／Coffee Time</a>
+        <a href="#tm">TM 演講會</a><a href="#thu">東海大學</a><a href="#np">NP</a>
       </nav>
     </div>
   </header>
@@ -162,7 +162,7 @@
         <p class="intro">依分享場域與使用情境分類，從演講、課程到公司宣導，快速找到簡報並直接開啟。</p>
       </div>
       <div class="stats" aria-label="簡報統計">
-        <div class="stat"><strong>4</strong><span>分類群組</span></div>
+        <div class="stat"><strong>3</strong><span>分類群組</span></div>
         <div class="stat"><strong>12</strong><span>網頁簡報</span></div>
       </div>
     </section>
@@ -234,7 +234,7 @@
     </details>
 
     <details class="group" id="np" data-group="np" open>
-      <summary class="group-head"><span class="group-no">GROUP 03 · NP</span><h2>NP／ISMS</h2><span class="group-meta">1 份簡報</span></summary>
+      <summary class="group-head"><span class="group-no">GROUP 03</span><h2>NP</h2><span class="group-meta">ISMS ＋ Coffee Time · 2 份簡報</span></summary>
       <div class="subgroup">
         <h3 class="subgroup-title">ISMS</h3>
         <div class="cards">
@@ -246,17 +246,16 @@
           </article>
         </div>
       </div>
-    </details>
-
-    <details class="group" id="coffee" data-group="coffee" open>
-      <summary class="group-head"><span class="group-no">GROUP 04 · NP</span><h2>NP／Coffee Time Share</h2><span class="group-meta">1 份簡報</span></summary>
-      <div class="cards">
-        <article class="presentation wide" data-search="np coffee time share 故事 spa 經歷 說成 被記住的故事 分享">
-          <div class="card-top"><span class="tag">故事表達</span><time class="date">2026-09-10</time></div>
-          <h3>故事 SPA｜把經歷，說成被記住的故事</h3>
-          <p class="description">用清楚的故事結構整理經歷，讓分享不只被聽見，也能被記住。</p>
-          <div class="actions"><a class="button primary" href="https://gm0621.github.io/story-spa/" target="_blank" rel="noopener">開啟簡報 ↗</a><a class="button" href="https://github.com/gm0621/story-spa" target="_blank" rel="noopener">GitHub</a></div>
-        </article>
+      <div class="subgroup" id="coffee">
+        <h3 class="subgroup-title">Coffee Time Share</h3>
+        <div class="cards">
+          <article class="presentation wide" data-search="np coffee time share 故事 spa 經歷 說成 被記住的故事 分享">
+            <div class="card-top"><span class="tag">故事表達</span><time class="date">2026-09-10</time></div>
+            <h3>故事 SPA｜把經歷，說成被記住的故事</h3>
+            <p class="description">用清楚的故事結構整理經歷，讓分享不只被聽見，也能被記住。</p>
+            <div class="actions"><a class="button primary" href="https://gm0621.github.io/story-spa/" target="_blank" rel="noopener">開啟簡報 ↗</a><a class="button" href="https://github.com/gm0621/story-spa" target="_blank" rel="noopener">GitHub</a></div>
+          </article>
+        </div>
       </div>
     </details>
 
@@ -298,10 +297,15 @@
     search.addEventListener('input', updateResults);
     expandAll.addEventListener('click', () => groups.filter(group => !group.hidden).forEach(group => { group.open = true; }));
     collapseAll.addEventListener('click', () => groups.filter(group => !group.hidden).forEach(group => { group.open = false; }));
-    window.addEventListener('hashchange', () => {
+    function openHashGroup() {
+      if (!location.hash) return;
       const target = document.querySelector(location.hash);
-      if (target?.matches('.group')) target.open = true;
-    });
+      const group = target?.matches('.group') ? target : target?.closest('.group');
+      if (group) group.open = true;
+    }
+
+    window.addEventListener('hashchange', openHashGroup);
+    openHashGroup();
   </script>
 </body>
 </html>
