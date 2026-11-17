@@ -511,7 +511,16 @@
     groups.forEach(group => {
       group.querySelector('summary').addEventListener('click', event => {
         event.preventDefault();
-        openGroup(group.open ? null : group, { scroll: true, scrollTarget: group });
+        if (group.open) {
+          cancelAnimationFrame(pendingCategoryScroll);
+          pendingCategoryScroll = 0;
+          document.documentElement.style.removeProperty('--category-scroll-space');
+          group.open = false;
+          syncNavigation();
+          scrollToGroupTitle(group);
+        } else {
+          openGroup(group, { scroll: true });
+        }
       });
       group.addEventListener('toggle', syncNavigation);
     });
