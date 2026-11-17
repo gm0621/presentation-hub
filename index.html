@@ -260,6 +260,15 @@
       .cover-topic strong { max-width:100%; font-size:30px; }
       .cover-topic small { max-width:calc(100% - 35px); font-size:9px; }
     }
+    .card-tags { display:flex; flex-wrap:wrap; gap:6px; }
+    .draft-tag { border:1px dashed #8da287; background:#f3f6ed; }
+    .draft-intro { margin:0 0 24px; }
+    #drafts .date { max-width:45%; }
+    @media(max-width:520px) {
+      #drafts .card-top { flex-wrap:wrap; gap:10px; }
+      #drafts .date { max-width:100%; text-align:left; }
+      .top-nav a { padding-inline:8px; }
+    }
   </style>
 </head>
 <body>
@@ -268,7 +277,7 @@
     <div class="masthead-inner">
       <a class="brand" href="#top" aria-label="回到頁首"><span class="brand-mark">GM</span><span class="brand-text">GM 的分享知識庫</span></a>
       <nav class="top-nav" aria-label="分類捷徑">
-        <a href="#tm">TM 演講會</a><a href="#thu">東海大學</a><a href="#np">NP</a>
+        <a href="#tm">TM 演講會</a><a href="#thu">東海大學</a><a href="#np">NP</a><a href="#drafts">草稿與構想</a>
       </nav>
     </div>
   </header>
@@ -281,16 +290,16 @@
         <p class="intro">這裡收藏我的演講、課程與工作分享。<br>選一個你感興趣的主題，一起把想法帶進生活。</p>
       </div>
       <div class="hero-aside"><span class="aside-label">分享知識，收藏靈感<br>持續分享，持續累積。</span><div class="stats" aria-label="簡報統計">
-        <div class="stat"><strong>3</strong><span>分類群組</span></div>
-        <div class="stat"><strong>15</strong><span>網頁簡報／課程</span></div>
+        <div class="stat"><strong>13</strong><span>網頁簡報／課程</span></div>
+        <div class="stat"><strong>2</strong><span>草稿與構想</span></div>
       </div>
       </div>
     </section>
 
     <div class="toolbar" role="search">
       <label class="search-label" for="search" aria-hidden="true">⌕</label>
-      <input class="search" id="search" type="search" autocomplete="off" placeholder="搜尋簡報、課程或主題…" aria-label="搜尋簡報">
-      <span class="result-count" id="resultCount" aria-live="polite">共 15 份</span>
+      <input class="search" id="search" type="search" autocomplete="off" placeholder="搜尋簡報、課程、草稿或主題…" aria-label="搜尋簡報">
+      <span class="result-count" id="resultCount" aria-live="polite">13 份簡報／課程・2 份草稿</span>
       <div class="group-actions" aria-label="群組顯示控制">
         <button class="text-button" id="expandAll" type="button">全部展開</button>
         <button class="text-button" id="collapseAll" type="button">全部收合</button>
@@ -324,7 +333,7 @@
     </details>
 
     <details class="group" id="thu" data-group="thu" open>
-      <summary class="group-head"><span class="group-no">02</span><h2>東海大學</h2><span class="group-meta">課程 7 ＋ 講座 2</span></summary>
+      <summary class="group-head"><span class="group-no">02</span><h2>東海大學</h2><span class="group-meta">7 份課程</span></summary>
       <div class="subgroup">
         <h3 class="subgroup-title">課程</h3>
         <div class="cards">
@@ -347,27 +356,7 @@
           </article>
         </div>
       </div>
-      <div class="subgroup">
-        <h3 class="subgroup-title">講座</h3>
-        <div class="cards">
-          <article class="presentation wide" data-search="東海大學 講座 課程 從0到1的魔法II 從 0 到 1 創業 進階 個人練習 七天實驗卡 履歷健檢 Buffer Superhuman Slack 證據 客群 決策">
-            <div class="cover cover-topic cover-magic" aria-hidden="true"><small>想法 / 實驗 / 發現</small><strong>從零到一，讓想法成真</strong><svg class="topic-art" viewBox="0 0 220 165" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="60" cy="86" r="39"/><path d="M138 48l24-15v105m-21 0h43M100 29h20m-10-10v20M195 69h16m-8-8v16"/><path d="M22 141h176" opacity=".45"/></svg></div>
-            <div class="card-top"><span class="tag">創業進階／案例實作</span><span class="date">90 分鐘課程＋30 分鐘 Q&amp;A</span></div>
-            <p class="host"><span>邀請單位</span>東海大學</p>
-            <h3>從 0 到 1 的魔法 II</h3>
-            <p class="description">從真實案例出發，先做決定、再揭曉做法，練習看證據、找對客群與設定決策條件，最後完成自己的七天實驗卡。</p>
-            <div class="actions"><a class="button primary" href="https://gm0621.github.io/thu-product-evidence-courseware/magic-2/" target="_blank" rel="noopener">開啟簡報 ↗</a><a class="button" href="https://gm0621.github.io/thu-product-evidence-courseware/magic-2/student.html" target="_blank" rel="noopener">學生練習單 ↗</a><a class="button" href="https://gm0621.github.io/thu-product-evidence-courseware/magic-2/presenter.html" target="_blank" rel="noopener">講者視窗（含答案）↗</a><a class="button" href="https://github.com/gm0621/thu-product-evidence-courseware/tree/main/magic-2" target="_blank" rel="noopener">GitHub</a></div>
-          </article>
-          <article class="presentation wide" data-search="東海大學 講座 教學 產品實驗 快速原型 洞察 證據">
-            <div class="cover cover-topic cover-evidence" aria-hidden="true"><small>洞察 / 原型 / 證據</small><strong>讓想法看得見</strong><svg class="topic-art" viewBox="0 0 220 165" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="16" y="51" width="56" height="69" rx="8" transform="rotate(-10 44 85)"/><rect x="82" y="35" width="56" height="85" rx="8"/><rect x="150" y="19" width="56" height="101" rx="8" transform="rotate(10 178 70)"/><path d="m96 80 10 10 18-23m-25-17h22m39 1h28m-28 15h23M29 71h24m-24 15h17"/></svg></div>
-            <div class="card-top"><span class="tag">產品開發進階</span><time class="date">2026-10-19</time></div>
-            <p class="host"><span>邀請單位</span>東海大學</p>
-            <h3>從洞察到證據｜產品實驗與快速原型</h3>
-            <p class="description">把模糊的產品想法轉成可驗證假設，以快速原型累積能支持決策的證據。</p>
-            <div class="actions"><a class="button primary" href="https://gm0621.github.io/thu-product-evidence-courseware/" target="_blank" rel="noopener">開啟簡報 ↗</a><a class="button" href="https://github.com/gm0621/thu-product-evidence-courseware" target="_blank" rel="noopener">GitHub</a></div>
-          </article>
-        </div>
-      </div>
+
     </details>
 
     <details class="group" id="np" data-group="np" open>
@@ -411,7 +400,28 @@
       </div>
     </details>
 
-    <div class="empty" id="emptyState"><strong>找不到符合的簡報</strong><br>換個關鍵字，或清除搜尋再看看。</div>
+    <details class="group" id="drafts" data-group="drafts">
+      <summary class="group-head"><span class="group-no">04</span><h2>草稿與構想</h2><span class="group-meta">2 份草稿・尚未分享</span></summary>
+      <p class="description draft-intro">收藏尚未正式分享的講稿與課程構想，內容持續整理中。</p>
+      <div class="cards">
+          <article class="presentation wide" data-status="draft" data-search="東海大學 講座 課程 從0到1的魔法II 從 0 到 1 創業 進階 個人練習 七天實驗卡 履歷健檢 Buffer Superhuman Slack 證據 客群 決策">
+            <div class="cover cover-topic cover-magic" aria-hidden="true"><small>想法 / 實驗 / 發現</small><strong>從零到一，讓想法成真</strong><svg class="topic-art" viewBox="0 0 220 165" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="60" cy="86" r="39"/><path d="M138 48l24-15v105m-21 0h43M100 29h20m-10-10v20M195 69h16m-8-8v16"/><path d="M22 141h176" opacity=".45"/></svg></div>
+            <div class="card-top"><span class="card-tags"><span class="tag draft-tag">草稿・尚未分享</span><span class="tag">創業進階／案例實作</span></span><span class="date">預計時長：90 分鐘課程＋30 分鐘問答</span></div>
+            <h3>從 0 到 1 的魔法 II</h3>
+            <p class="description">從真實案例出發，先做決定、再揭曉做法，練習看證據、找對客群與設定決策條件，最後完成自己的七天實驗卡。</p>
+            <div class="actions"><a class="button primary" href="https://gm0621.github.io/thu-product-evidence-courseware/magic-2/" target="_blank" rel="noopener">預覽草稿 ↗</a><a class="button" href="https://gm0621.github.io/thu-product-evidence-courseware/magic-2/student.html" target="_blank" rel="noopener">學生練習單 ↗</a><a class="button" href="https://gm0621.github.io/thu-product-evidence-courseware/magic-2/presenter.html" target="_blank" rel="noopener">講者視窗（含答案）↗</a><a class="button" href="https://github.com/gm0621/thu-product-evidence-courseware/tree/main/magic-2" target="_blank" rel="noopener">GitHub</a></div>
+          </article>
+          <article class="presentation wide" data-status="draft" data-search="東海大學 講座 教學 產品實驗 快速原型 洞察 證據">
+            <div class="cover cover-topic cover-evidence" aria-hidden="true"><small>洞察 / 原型 / 證據</small><strong>讓想法看得見</strong><svg class="topic-art" viewBox="0 0 220 165" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="16" y="51" width="56" height="69" rx="8" transform="rotate(-10 44 85)"/><rect x="82" y="35" width="56" height="85" rx="8"/><rect x="150" y="19" width="56" height="101" rx="8" transform="rotate(10 178 70)"/><path d="m96 80 10 10 18-23m-25-17h22m39 1h28m-28 15h23M29 71h24m-24 15h17"/></svg></div>
+            <div class="card-top"><span class="card-tags"><span class="tag draft-tag">草稿・尚未分享</span><span class="tag">產品開發進階</span></span></div>
+            <h3>從洞察到證據｜產品實驗與快速原型</h3>
+            <p class="description">把模糊的產品想法轉成可驗證假設，以快速原型累積能支持決策的證據。</p>
+            <div class="actions"><a class="button primary" href="https://gm0621.github.io/thu-product-evidence-courseware/" target="_blank" rel="noopener">預覽草稿 ↗</a><a class="button" href="https://github.com/gm0621/thu-product-evidence-courseware" target="_blank" rel="noopener">GitHub</a></div>
+          </article>
+      </div>
+    </details>
+
+    <div class="empty" id="emptyState"><strong>找不到符合的內容</strong><br>換個關鍵字，或清除搜尋再看看。</div>
   </main>
 
   <footer><span>GM 的分享知識庫 · 2026</span><span>集中整理，內容仍由各簡報 Repository 維護。</span></footer>
@@ -429,13 +439,24 @@
       return value.toLocaleLowerCase('zh-Hant').replace(/\s+/g, ' ').trim();
     }
 
+    let preSearchOpen = null;
+
     function updateResults() {
       const query = normalize(search.value);
+      if (query && !preSearchOpen) preSearchOpen = new Map(groups.map(group => [group, group.open]));
+      if (!query && preSearchOpen) {
+        groups.forEach(group => { group.open = preSearchOpen.get(group); });
+        preSearchOpen = null;
+      }
       let visibleDecks = 0;
+      let visibleDrafts = 0;
       presentations.forEach(card => {
         const matches = !query || normalize(card.dataset.search + ' ' + card.textContent).includes(query);
         card.hidden = !matches;
-        if (matches) visibleDecks += Number(card.querySelectorAll('.lesson-link').length || 1);
+        if (matches) {
+          if (card.dataset.status === 'draft') visibleDrafts += 1;
+          else visibleDecks += Number(card.querySelectorAll('.lesson-link').length || 1);
+        }
       });
       groups.forEach(group => {
         const hasMatch = Boolean(group.querySelector('.presentation:not([hidden])'));
@@ -443,8 +464,8 @@
         if (query && hasMatch) group.open = true;
       });
       document.querySelectorAll('.subgroup').forEach(section => { section.hidden = !section.querySelector('.presentation:not([hidden])'); });
-      resultCount.textContent = `共 ${visibleDecks} 份`;
-      emptyState.classList.toggle('visible', visibleDecks === 0);
+      resultCount.textContent = `${visibleDecks} 份簡報／課程・${visibleDrafts} 份草稿`;
+      emptyState.classList.toggle('visible', visibleDecks + visibleDrafts === 0);
     }
 
     search.addEventListener('input', updateResults);
@@ -471,6 +492,3 @@
   </script>
 </body>
 </html>
-
-
-
