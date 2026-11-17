@@ -582,9 +582,8 @@
     window.addEventListener('pageshow', updateBackToTop);
     updateBackToTop();
     backToTop.addEventListener('click', () => {
-      cancelAnimationFrame(pendingCategoryScroll);
-      pendingCategoryScroll = 0;
-      document.documentElement.style.removeProperty('--category-scroll-space');
+      openGroup(null);
+      preSearchGroup = null;
       history.replaceState(null, '', location.pathname + location.search);
       document.querySelector('.brand').focus({ preventScroll: true });
       window.scrollTo({
