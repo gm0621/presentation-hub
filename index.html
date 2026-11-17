@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="description" content="GM 的分享知識庫，依 TM 演講會、東海大學與 NP 分享場域分類整理。">
-  <meta name="theme-color" content="#17324d">
+  <meta name="theme-color" content="#203d35">
   <title>GM 的分享知識庫</title>
   <style>
     :root {
@@ -144,6 +144,105 @@
       .group > *:not(summary) { display: block !important; }
       .presentation { box-shadow: none; break-inside: avoid; }
     }
+
+    /* GM — an editorial knowledge collection */
+    :root { --paper:#f7f8f4; --surface:#ffffff; --ink:#203d35; --muted:#68756f; --line:#dfe5dc; --accent:#326e56; --accent-soft:#e9f0e6; --shadow:0 8px 25px #243c3110; --radius:20px; --max:1160px; }
+    body { background:var(--paper); font-weight:400; -webkit-font-smoothing:antialiased; }
+    .masthead { position:sticky; top:0; z-index:10; background:#f7f8f4ed; }
+    .masthead-inner { min-height:76px; }
+    .brand { font-size:15px; gap:10px; }
+    .brand-mark { background:var(--ink); color:#fff; border:0; width:35px; height:35px; border-radius:11px; }
+    .top-nav { gap:8px; font-size:13px; }
+    .top-nav a { padding:9px 17px; border-radius:30px; }
+    .top-nav a:hover,.top-nav a[aria-current] { background:var(--accent-soft); color:var(--ink); }
+    main { padding-top:62px; }
+    .hero { position:relative; grid-template-columns:1.4fr .6fr; gap:40px; margin-bottom:38px; align-items:center; }
+    .eyebrow { font-size:11px; font-weight:650; letter-spacing:.2em; margin-bottom:19px; }
+    h1 { font-family:inherit; font-size:clamp(40px,5.2vw,64px); line-height:1.18; letter-spacing:-.055em; font-weight:750; }
+    h1 em { font-style:normal; color:#6a8872; }
+    .intro { font-size:15px; max-width:510px; line-height:1.9; margin-top:20px; }
+    .hero-aside { position:relative; min-height:212px; background:#e8eee3; border-radius:22px; padding:28px; overflow:hidden; display:flex; flex-direction:column; justify-content:space-between; }
+    .hero-aside::after { content:'↗'; position:absolute; right:17px; top:-30px; font:180px/1.2 Georgia,serif; color:#c8d7bd; }
+    .aside-label { position:relative; z-index:1; font:11px/1.5 ui-monospace,monospace; letter-spacing:.14em; }
+    .stats { position:relative; z-index:1; border:0; max-width:230px; }
+    .stat { padding:12px 0 0; }
+    .stat + .stat { border-color:#c6d4c0; padding-left:24px; }
+    .stat strong { font-size:42px; font-weight:500; letter-spacing:-.06em; margin-bottom:8px; }
+    .stat span { font-size:11px; font-weight:500; }
+    .toolbar { margin-bottom:0; background:#fff; box-shadow:none; border-radius:14px; padding:10px 16px; }
+    .search { font-size:14px; }
+    .search-label { font-size:28px; }
+    .text-button { font-weight:500; border:0; background:#f1f4ee; }
+    .result-count { font-weight:500; font-size:12px; padding-right:12px; }
+    .group { scroll-margin-top:104px; margin-top:50px; }
+    .group-head { grid-template-columns:44px 1fr auto 34px; align-items:center; gap:14px; border-bottom:1px solid var(--line); padding-bottom:18px; }
+    .group-no { display:grid; place-items:center; width:36px; height:36px; background:#e8eee3; border-radius:10px; font-size:12px; letter-spacing:0; }
+    h2 { font-family:inherit; font-size:26px; font-weight:700; letter-spacing:-.04em; }
+    .group-meta { font-size:12px; font-weight:400; }
+    .group-head::after { width:28px; height:28px; font-size:18px; }
+    .group[open] > .group-head { margin-bottom:24px; }
+    .cards { gap:22px; }
+    .presentation { padding:26px; box-shadow:0 3px 8px #203d3503; transition:box-shadow .2s,border-color .2s; }
+    .presentation:hover { border-color:#adbdaf; box-shadow:var(--shadow); }
+    .presentation::before { display:none; }
+    .cover { height:160px; margin:-26px -26px 24px; padding:24px 28px; position:relative; overflow:hidden; display:flex; flex-direction:column; justify-content:space-between; }
+    .cover small { font:10px/1.5 ui-monospace,monospace; letter-spacing:.2em; position:relative; z-index:1; }
+    .cover strong { font:500 37px/1 Georgia,serif; letter-spacing:-.04em; position:relative; z-index:1; }
+    .cover-podcast { background:#e9eee0; color:#37513b; }
+    .wave { position:absolute; right:25px; top:38px; height:85px; display:flex; gap:6px; align-items:center; transform:rotate(-8deg); }
+    .wave i { width:9px; height:var(--h); background:#8ca47a; border-radius:8px; }
+    .cover-ai { background:#24483c; color:#edf3da; }
+    .orbits { position:absolute; width:190px; height:190px; right:18px; top:-15px; border:1px solid #b7cd9366; border-radius:50%; }
+    .orbits::before,.orbits::after { content:''; position:absolute; inset:20px -20px; border:1px solid #b7cd9366; border-radius:50%; transform:rotate(52deg); }
+    .orbits::after { inset:35px -30px; transform:rotate(-52deg); background:#cbdba50a; }
+    .tag { background:var(--accent-soft); color:#436447; font-size:11px; font-weight:500; min-height:25px; }
+    .date { font-size:11px; font-weight:400; }
+    .host { font-size:12px; font-weight:500; margin-top:19px; }
+    .host span { font-size:10px; color:#758476; font-weight:400; }
+    h3 { font-size:24px; font-weight:650; line-height:1.45; letter-spacing:-.03em; }
+    .description { font-size:14px; line-height:1.8; }
+    .lesson-list { gap:8px; margin-top:20px; }
+    .lesson-link { background:#f7f9f4; border-color:#e5eade; border-radius:10px; }
+    .lesson-name { font-size:13px; font-weight:500; }
+    .lesson-no { font-weight:500; }
+    .actions { padding-top:24px; gap:8px; }
+    .button { font-size:12px; min-height:40px; border-color:var(--line); border-radius:8px; padding:8px 13px; font-weight:550; }
+    .button.primary { background:var(--ink); border-color:var(--ink); }
+    .button[href*="github.com"] { border-color:transparent; color:var(--muted); padding-inline:6px; }
+    .subgroup-title { font-size:12px; font-weight:500; color:var(--muted); }
+    footer { font-size:12px; }
+    .subgroup[hidden] { display:none; }
+    @media(max-width:820px) {
+      .hero { grid-template-columns:1fr; gap:26px; }
+      .hero-aside { min-height:150px; }
+      .stats { width:240px; }
+      .top-nav { display:flex; }
+      .top-nav a { padding:8px 10px; }
+      .group-head { grid-template-columns:36px 1fr auto 28px; }
+      .group-meta { grid-column:auto; }
+      .group-head::after { grid-column:auto; grid-row:auto; }
+      .cards { grid-template-columns:1fr; }
+    }
+    @media(max-width:520px) {
+      .masthead-inner { flex-wrap:wrap; gap:8px; padding:12px 0 8px; }
+      .top-nav { width:100%; justify-content:space-between; font-size:12px; }
+      main { padding-top:34px; }
+      h1 { font-size:42px; }
+      .hero-aside { min-height:155px; padding:20px; }
+      .toolbar { padding:10px; }
+      .group { scroll-margin-top:135px; }
+      .group-head { grid-template-columns:36px 1fr 28px; gap:10px; }
+      .group-meta { grid-column:2; grid-row:2; }
+      .group-head::after { grid-column:3; grid-row:1 / span 2; }
+      h2 { font-size:24px; }
+      .presentation { padding:22px; }
+      .cover { margin:-22px -22px 22px; height:145px; padding:22px; }
+      .cover strong { font-size:32px; }
+      .wave { right:18px; gap:4px; }
+      .wave i { width:6px; }
+      .orbits { right:-30px; }
+      .lesson-list { grid-template-columns:1fr; }
+    }
   </style>
 </head>
 <body>
@@ -161,12 +260,13 @@
     <section class="hero" id="top">
       <div>
         <p class="eyebrow">Talks · Courses · Briefings</p>
-        <h1>GM 的<br>分享知識庫</h1>
-        <p class="intro">依分享場域與使用情境分類，從演講、課程到公司宣導，快速找到簡報並直接開啟。</p>
+        <h1>讓每一次分享，<br><em>成為下一步的靈感。</em></h1>
+        <p class="intro">這裡收藏我的演講、課程與工作分享。<br>選一個你感興趣的主題，一起把想法帶進生活。</p>
       </div>
-      <div class="stats" aria-label="簡報統計">
+      <div class="hero-aside"><span class="aside-label">GM’S KNOWLEDGE COLLECTION<br>持續分享，持續累積。</span><div class="stats" aria-label="簡報統計">
         <div class="stat"><strong>3</strong><span>分類群組</span></div>
         <div class="stat"><strong>15</strong><span>網頁簡報／課程</span></div>
+      </div>
       </div>
     </section>
 
@@ -181,9 +281,10 @@
     </div>
 
     <details class="group" id="tm" data-group="tm" open>
-      <summary class="group-head"><span class="group-no">GROUP 01</span><h2>TM 演講會</h2><span class="group-meta">3 份簡報</span></summary>
+      <summary class="group-head"><span class="group-no">01</span><h2>TM 演講會</h2><span class="group-meta">3 份簡報</span></summary>
       <div class="cards">
         <article class="presentation" data-search="podcast 分享 tm 演講會 美好食光演講會 不一定要上架 錄音 笑點">
+          <div class="cover cover-podcast" aria-hidden="true"><small>VOICE / STORIES / CONNECTION</small><strong>Just hit record.</strong><div class="wave"><i style="--h:16px"></i><i style="--h:34px"></i><i style="--h:56px"></i><i style="--h:38px"></i><i style="--h:75px"></i><i style="--h:90px"></i><i style="--h:54px"></i><i style="--h:68px"></i><i style="--h:35px"></i><i style="--h:51px"></i><i style="--h:25px"></i><i style="--h:14px"></i></div></div>
           <div class="card-top"><span class="tag">Podcast／分享</span><time class="date">2026-09-23</time></div>
           <p class="host"><span>邀請單位</span>美好食光演講會</p>
           <h3>不一定要上架，也能開始 Podcast</h3>
@@ -195,6 +296,7 @@
           <div class="actions"><a class="button" href="https://github.com/gm0621/ppt_shared" target="_blank" rel="noopener">GitHub Repository ↗</a></div>
         </article>
         <article class="presentation" data-search="ai 創富 創富演講會 專題演講 tm 演講會 財富 toastmasters">
+          <div class="cover cover-ai" aria-hidden="true"><small>IDEAS INTO IMPACT</small><strong>Beyond AI.</strong><div class="orbits"></div></div>
           <div class="card-top"><span class="tag">專題演講</span><time class="date">2026-10-20</time></div>
           <p class="host"><span>邀請單位</span>創富演講會</p>
           <h3>當 AI 什麼都能做，我們還能靠什麼創造財富？</h3>
@@ -205,7 +307,7 @@
     </details>
 
     <details class="group" id="thu" data-group="thu" open>
-      <summary class="group-head"><span class="group-no">GROUP 02</span><h2>東海大學</h2><span class="group-meta">課程 7 ＋ 講座 2</span></summary>
+      <summary class="group-head"><span class="group-no">02</span><h2>東海大學</h2><span class="group-meta">課程 7 ＋ 講座 2</span></summary>
       <div class="subgroup">
         <h3 class="subgroup-title">課程</h3>
         <div class="cards">
@@ -249,7 +351,7 @@
     </details>
 
     <details class="group" id="np" data-group="np" open>
-      <summary class="group-head"><span class="group-no">GROUP 03</span><h2>NP</h2><span class="group-meta">教育訓練 1 ＋ ISMS 1 ＋ Coffee Time 1</span></summary>
+      <summary class="group-head"><span class="group-no">03</span><h2>NP</h2><span class="group-meta">教育訓練 1 ＋ ISMS 1 ＋ Coffee Time 1</span></summary>
       <div class="subgroup">
         <h3 class="subgroup-title">教育訓練</h3>
         <div class="cards">
@@ -317,6 +419,7 @@
         group.hidden = !hasMatch;
         if (query && hasMatch) group.open = true;
       });
+      document.querySelectorAll('.subgroup').forEach(section => { section.hidden = !section.querySelector('.presentation:not([hidden])'); });
       resultCount.textContent = `共 ${visibleDecks} 份`;
       emptyState.classList.toggle('visible', visibleDecks === 0);
     }
@@ -326,9 +429,18 @@
     collapseAll.addEventListener('click', () => groups.filter(group => !group.hidden).forEach(group => { group.open = false; }));
     function openHashGroup() {
       if (!location.hash) return;
-      const target = document.querySelector(location.hash);
+      let hash;
+      try { hash = decodeURIComponent(location.hash.slice(1)); } catch { return; }
+      const target = document.getElementById(hash);
       const group = target?.matches('.group') ? target : target?.closest('.group');
-      if (group) group.open = true;
+      if (group) {
+        if (search.value) { search.value = ''; updateResults(); }
+        group.open = true;
+        document.querySelectorAll('.top-nav a').forEach(a => {
+          if (a.hash === '#' + group.id) a.setAttribute('aria-current', 'location');
+          else a.removeAttribute('aria-current');
+        });
+      }
     }
 
     window.addEventListener('hashchange', openHashGroup);
@@ -336,3 +448,4 @@
   </script>
 </body>
 </html>
+
