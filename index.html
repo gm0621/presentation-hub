@@ -272,6 +272,24 @@
     /* Reserve only the scroll room needed to keep a collapsed title anchored. */
     body::after { content: ""; display: block; height: var(--category-scroll-space, 0px); overflow-anchor: none; }
     @media print { body::after { display: none; } }
+    .back-to-top {
+      position: fixed; right: max(24px, env(safe-area-inset-right));
+      bottom: calc(24px + env(safe-area-inset-bottom)); z-index: 15;
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      min-height: 48px; padding: 12px 18px; border: 1px solid #4b6b5e;
+      border-radius: 999px; background: var(--ink); color: #fff;
+      box-shadow: 0 6px 20px #203d3526; font: inherit; font-size: 13px;
+      font-weight: 600; cursor: pointer; touch-action: manipulation;
+      transition: background .15s ease, transform .15s ease;
+    }
+    .back-to-top[hidden] { display: none; }
+    .back-to-top:hover { background: var(--accent); transform: translateY(-2px); }
+    .back-to-top:focus-visible { outline: 3px solid #8da287; outline-offset: 4px; }
+    .back-to-top svg { width: 18px; height: 18px; }
+    @media(max-width:520px) {
+      .back-to-top { right: max(16px, env(safe-area-inset-right)); bottom: calc(16px + env(safe-area-inset-bottom)); min-height: 52px; padding: 14px 18px; }
+    }
+    @media print { .back-to-top { display: none !important; } }
   </style>
 </head>
 <body>
@@ -430,6 +448,11 @@
 
   <footer><span>GM 的分享知識庫 · 2026</span><span>集中整理，內容仍由各簡報 Repository 維護。</span></footer>
 
+  <button class="back-to-top" id="backToTop" type="button" hidden>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 11 6-6 6 6M12 5v14"/></svg>
+    <span>回到頁首</span>
+  </button>
+
   <script>
     const search = document.querySelector('#search');
     const presentations = [...document.querySelectorAll('.presentation')];
@@ -550,6 +573,25 @@
     });
     window.addEventListener('hashchange', () => navigateToGroup(location.hash));
     navigateToGroup(location.hash);
+
+    const backToTop = document.querySelector('#backToTop');
+    function updateBackToTop() {
+      backToTop.hidden = window.scrollY <= 320;
+    }
+    window.addEventListener('scroll', updateBackToTop, { passive: true });
+    window.addEventListener('pageshow', updateBackToTop);
+    updateBackToTop();
+    backToTop.addEventListener('click', () => {
+      cancelAnimationFrame(pendingCategoryScroll);
+      pendingCategoryScroll = 0;
+      document.documentElement.style.removeProperty('--category-scroll-space');
+      history.replaceState(null, '', location.pathname + location.search);
+      document.querySelector('.brand').focus({ preventScroll: true });
+      window.scrollTo({
+        top: 0,
+        behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth'
+      });
+    });
   </script>
 </body>
 </html>
