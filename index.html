@@ -322,11 +322,12 @@
       <input class="search" id="search" type="search" autocomplete="off" placeholder="搜尋簡報、課程、草稿或主題…" aria-label="搜尋簡報">
       <span class="result-count" id="resultCount" aria-live="polite">13 份簡報／課程・2 份草稿</span>
       <div class="group-actions" aria-label="群組顯示控制">
+        <button class="text-button" id="expandAll" type="button">全部展開</button>
         <button class="text-button" id="collapseAll" type="button">全部收合</button>
       </div>
     </div>
 
-    <details name="knowledge-groups" class="group" id="tm" data-group="tm">
+    <details class="group" id="tm" data-group="tm">
       <summary class="group-head"><span class="group-no">01</span><h2>TM 演講會</h2><span class="group-meta">3 份簡報</span></summary>
       <div class="cards">
         <article class="presentation" data-search="podcast 分享 tm 演講會 美好食光演講會 不一定要上架 錄音 笑點">
@@ -352,7 +353,7 @@
       </div>
     </details>
 
-    <details name="knowledge-groups" class="group" id="thu" data-group="thu">
+    <details class="group" id="thu" data-group="thu">
       <summary class="group-head"><span class="group-no">02</span><h2>東海大學</h2><span class="group-meta">7 份課程</span></summary>
       <div class="subgroup">
         <h3 class="subgroup-title">課程</h3>
@@ -379,7 +380,7 @@
 
     </details>
 
-    <details name="knowledge-groups" class="group" id="np" data-group="np">
+    <details class="group" id="np" data-group="np">
       <summary class="group-head"><span class="group-no">03</span><h2>NP</h2><span class="group-meta">教育訓練 1 ＋ ISMS 1 ＋ Coffee Time 1</span></summary>
       <div class="subgroup">
         <h3 class="subgroup-title">教育訓練</h3>
@@ -420,7 +421,7 @@
       </div>
     </details>
 
-    <details name="knowledge-groups" class="group" id="drafts" data-group="drafts">
+    <details class="group" id="drafts" data-group="drafts">
       <summary class="group-head"><span class="group-no">04</span><h2>草稿與構想</h2><span class="group-meta">2 份草稿・尚未分享</span></summary>
       <p class="description draft-intro">收藏尚未正式分享的講稿與課程構想，內容持續整理中。</p>
       <div class="cards">
@@ -467,7 +468,8 @@
     }
 
     function syncNavigation() {
-      const active = groups.find(group => group.open && !group.hidden);
+      const expanded = groups.filter(group => group.open && !group.hidden);
+      const active = expanded.length === 1 ? expanded[0] : null;
       navLinks.forEach(link => {
         if (active && link.hash === '#' + active.id) link.setAttribute('aria-current', 'location');
         else link.removeAttribute('aria-current');
@@ -549,6 +551,13 @@
     }
 
     search.addEventListener('input', updateResults);
+    document.querySelector('#expandAll').addEventListener('click', () => {
+      cancelAnimationFrame(pendingCategoryScroll);
+      pendingCategoryScroll = 0;
+      document.documentElement.style.removeProperty('--category-scroll-space');
+      groups.forEach(group => { group.open = !group.hidden; });
+      syncNavigation();
+    });
     collapseAll.addEventListener('click', () => {
       const current = groups.find(group => group.open && !group.hidden);
       openGroup(null, { scroll: Boolean(current), scrollTarget: current });
