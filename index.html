@@ -243,6 +243,23 @@
       .orbits { right:-30px; }
       .lesson-list { grid-template-columns:1fr; }
     }
+
+    /* Topic covers share the TM cover proportions and editorial typography. */
+    .cover-topic { background:#e9eee0; color:#37513b; }
+    .cover-topic strong { max-width:calc(100% - 230px); }
+    .cover-topic small { max-width:calc(100% - 230px); }
+    .topic-art { position:absolute; right:32px; top:0; width:220px; height:165px; color:#7d9970; }
+    .cover-magic,.cover-cloud { background:#24483c; color:#edf3da; }
+    .cover-magic .topic-art,.cover-cloud .topic-art { color:#a8bf8b; }
+    .cover-evidence { background:#e2eade; }
+    .cover-security { background:#dce6db; }
+    .cover-story { background:#eceddf; }
+    @media(max-width:600px) {
+      .cover-topic { height:160px; }
+      .topic-art { width:145px; height:109px; right:-10px; top:5px; opacity:.32; }
+      .cover-topic strong { max-width:100%; font-size:30px; }
+      .cover-topic small { max-width:calc(100% - 35px); font-size:9px; }
+    }
   </style>
 </head>
 <body>
@@ -312,6 +329,7 @@
         <h3 class="subgroup-title">課程</h3>
         <div class="cards">
           <article class="presentation wide" data-search="東海大學 數創學院 課程 教學 asp.net html css bootstrap windows 表單 model validation 驗證">
+            <div class="cover cover-topic cover-code" aria-hidden="true"><small>BUILD / LEARN / CREATE</small><strong>Build something real.</strong><svg class="topic-art" viewBox="0 0 220 165" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="22" y="24" width="174" height="112" rx="12"/><path d="M22 48h174M38 36h2m9 0h2m9 0h2M77 72 57 91l20 19m65-38 20 19-20 19m-25-46-16 54"/></svg></div>
             <div class="card-top"><span class="tag">網路服務技術與應用</span><span class="date">115 上學期<br>(2026.09.14 - 2027.01.11)</span></div>
             <p class="host"><span>邀請單位</span>數創學院</p>
             <h3>ASP.NET 課程總覽</h3>
@@ -333,6 +351,7 @@
         <h3 class="subgroup-title">講座</h3>
         <div class="cards">
           <article class="presentation wide" data-search="東海大學 講座 課程 從0到1的魔法II 從 0 到 1 創業 進階 個人練習 七天實驗卡 履歷健檢 Buffer Superhuman Slack 證據 客群 決策">
+            <div class="cover cover-topic cover-magic" aria-hidden="true"><small>IDEA / EXPERIMENT / DISCOVERY</small><strong>From zero to one.</strong><svg class="topic-art" viewBox="0 0 220 165" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="60" cy="86" r="39"/><path d="M138 48l24-15v105m-21 0h43M100 29h20m-10-10v20M195 69h16m-8-8v16"/><path d="M22 141h176" opacity=".45"/></svg></div>
             <div class="card-top"><span class="tag">創業進階／案例實作</span><span class="date">90 分鐘課程＋30 分鐘 Q&amp;A</span></div>
             <p class="host"><span>邀請單位</span>東海大學</p>
             <h3>從 0 到 1 的魔法 II</h3>
@@ -340,6 +359,7 @@
             <div class="actions"><a class="button primary" href="https://gm0621.github.io/thu-product-evidence-courseware/magic-2/" target="_blank" rel="noopener">開啟簡報 ↗</a><a class="button" href="https://gm0621.github.io/thu-product-evidence-courseware/magic-2/student.html" target="_blank" rel="noopener">學生練習單 ↗</a><a class="button" href="https://gm0621.github.io/thu-product-evidence-courseware/magic-2/presenter.html" target="_blank" rel="noopener">講者視窗（含答案）↗</a><a class="button" href="https://github.com/gm0621/thu-product-evidence-courseware/tree/main/magic-2" target="_blank" rel="noopener">GitHub</a></div>
           </article>
           <article class="presentation wide" data-search="東海大學 講座 教學 產品實驗 快速原型 洞察 證據">
+            <div class="cover cover-topic cover-evidence" aria-hidden="true"><small>INSIGHT / PROTOTYPE / EVIDENCE</small><strong>Make ideas tangible.</strong><svg class="topic-art" viewBox="0 0 220 165" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="16" y="51" width="56" height="69" rx="8" transform="rotate(-10 44 85)"/><rect x="82" y="35" width="56" height="85" rx="8"/><rect x="150" y="19" width="56" height="101" rx="8" transform="rotate(10 178 70)"/><path d="m96 80 10 10 18-23m-25-17h22m39 1h28m-28 15h23M29 71h24m-24 15h17"/></svg></div>
             <div class="card-top"><span class="tag">產品開發進階</span><time class="date">2026-10-19</time></div>
             <p class="host"><span>邀請單位</span>東海大學</p>
             <h3>從洞察到證據｜產品實驗與快速原型</h3>
@@ -356,6 +376,7 @@
         <h3 class="subgroup-title">教育訓練</h3>
         <div class="cards">
           <article class="presentation wide" data-search="np npartner n-partner n-cloud 教育訓練 教學 課程 考證 考照 證照 npsc npec syslog flow snmp pm se poc backend 維運 事件調查">
+            <div class="cover cover-topic cover-cloud" aria-hidden="true"><small>FOUNDATIONS / PRACTICE / MASTERY</small><strong>Find your next level.</strong><svg class="topic-art" viewBox="0 0 220 165" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M59 77H48a22 22 0 0 1-2-44 34 34 0 0 1 65-6 26 26 0 0 1 8 50H59Zm19 0v23m-48 20v-20h96v20"/><rect x="14" y="120" width="32" height="22" rx="5"/><rect x="62" y="120" width="32" height="22" rx="5"/><rect x="110" y="120" width="32" height="22" rx="5"/><path d="M169 133V93h36M169 93V54h36m-10-10 10 10-10 10"/></svg></div>
             <div class="card-top"><span class="tag">N-Cloud／考照課程</span><time class="date">2026-10-22</time></div>
             <p class="host"><span>適用對象</span>N-Partner 同仁與 NPSC／NPEC 考生</p>
             <h3>N-Cloud 完整學習路線</h3>
@@ -368,6 +389,7 @@
         <h3 class="subgroup-title">ISMS</h3>
         <div class="cards">
           <article class="presentation wide" data-search="np isms 公司宣導 內外稽 電腦自查 資安 新夥伴">
+            <div class="cover cover-topic cover-security" aria-hidden="true"><small>AWARENESS / CHECK / PROTECT</small><strong>Confidence in every check.</strong><svg class="topic-art" viewBox="0 0 220 165" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m109 13 61 23v43c0 34-32 61-61 73-29-12-61-39-61-73V36l61-23Z"/><path d="m81 79 20 20 39-43"/><circle cx="109" cy="81" r="66" opacity=".3"/></svg></div>
             <div class="card-top"><span class="tag">公司宣導</span><time class="date">2026-09-21</time></div>
             <h3>內外稽注意事項與電腦自查</h3>
             <p class="description">提供同仁進行稽核前準備與電腦環境自我檢查的實務指引。</p>
@@ -379,6 +401,7 @@
         <h3 class="subgroup-title">Coffee Time Share</h3>
         <div class="cards">
           <article class="presentation wide" data-search="np coffee time share 故事 spa 經歷 說成 被記住的故事 分享">
+            <div class="cover cover-topic cover-story" aria-hidden="true"><small>EXPERIENCE / EXPRESSION / CONNECTION</small><strong>Stories that stay.</strong><svg class="topic-art" viewBox="0 0 220 165" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M27 28h119a13 13 0 0 1 13 13v49a13 13 0 0 1-13 13H73l-29 23v-23H27a13 13 0 0 1-13-13V41a13 13 0 0 1 13-13Z"/><path d="M169 58h21a13 13 0 0 1 13 13v49a13 13 0 0 1-13 13h-13v19l-26-19h-39a13 13 0 0 1-13-13v-7M44 55h84M44 73h60"/></svg></div>
             <div class="card-top"><span class="tag">故事表達</span><time class="date">2026-09-10</time></div>
             <h3>故事 SPA｜把經歷，說成被記住的故事</h3>
             <p class="description">用清楚的故事結構整理經歷，讓分享不只被聽見，也能被記住。</p>
@@ -448,4 +471,5 @@
   </script>
 </body>
 </html>
+
 
