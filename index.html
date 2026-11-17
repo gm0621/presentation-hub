@@ -269,6 +269,9 @@
       #drafts .date { max-width:100%; text-align:left; }
       .top-nav a { padding-inline:8px; }
     }
+    /* Reserve only the scroll room needed to keep a collapsed title anchored. */
+    body::after { content: ""; display: block; height: var(--category-scroll-space, 0px); overflow-anchor: none; }
+    @media print { body::after { display: none; } }
   </style>
 </head>
 <body>
@@ -455,10 +458,12 @@
       pendingCategoryScroll = requestAnimationFrame(() => {
         pendingCategoryScroll = requestAnimationFrame(() => {
           pendingCategoryScroll = 0;
-          if (!group.open || group.hidden) return;
+          if (group.hidden) return;
           const title = group.querySelector('summary');
           const headerHeight = document.querySelector('.masthead').getBoundingClientRect().height;
           const top = window.scrollY + title.getBoundingClientRect().top - headerHeight - 24;
+          const extraSpace = Math.max(0, Math.ceil(top + window.innerHeight - document.documentElement.scrollHeight));
+          document.documentElement.style.setProperty('--category-scroll-space', `${extraSpace}px`);
           window.scrollTo({
             top: Math.max(0, top),
             behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth'
@@ -467,20 +472,21 @@
       });
     }
 
-    function openGroup(selected, { scroll = false } = {}) {
+    function openGroup(selected, { scroll = false, scrollTarget = selected } = {}) {
       cancelAnimationFrame(pendingCategoryScroll);
       pendingCategoryScroll = 0;
+      document.documentElement.style.removeProperty('--category-scroll-space');
       // Close first so both native and older browsers allow only one open group.
       groups.forEach(group => { if (group !== selected) group.open = false; });
       if (selected && !selected.hidden) selected.open = true;
       syncNavigation();
-      if (scroll && selected && selected.open && !selected.hidden) scrollToGroupTitle(selected);
+      if (scroll && scrollTarget && !scrollTarget.hidden) scrollToGroupTitle(scrollTarget);
     }
 
     groups.forEach(group => {
       group.querySelector('summary').addEventListener('click', event => {
         event.preventDefault();
-        openGroup(group.open ? null : group, { scroll: true });
+        openGroup(group.open ? null : group, { scroll: true, scrollTarget: group });
       });
       group.addEventListener('toggle', syncNavigation);
     });
@@ -520,7 +526,10 @@
     }
 
     search.addEventListener('input', updateResults);
-    collapseAll.addEventListener('click', () => openGroup(null));
+    collapseAll.addEventListener('click', () => {
+      const current = groups.find(group => group.open && !group.hidden);
+      openGroup(null, { scroll: Boolean(current), scrollTarget: current });
+    });
 
     function navigateToGroup(hash) {
       let id;
