@@ -448,17 +448,39 @@
       });
     }
 
-    function openGroup(selected) {
+    let pendingCategoryScroll = 0;
+
+    function scrollToGroupTitle(group) {
+      // Wait for the collapsed sections and browser scroll anchoring to settle.
+      pendingCategoryScroll = requestAnimationFrame(() => {
+        pendingCategoryScroll = requestAnimationFrame(() => {
+          pendingCategoryScroll = 0;
+          if (!group.open || group.hidden) return;
+          const title = group.querySelector('summary');
+          const headerHeight = document.querySelector('.masthead').getBoundingClientRect().height;
+          const top = window.scrollY + title.getBoundingClientRect().top - headerHeight - 24;
+          window.scrollTo({
+            top: Math.max(0, top),
+            behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth'
+          });
+        });
+      });
+    }
+
+    function openGroup(selected, { scroll = false } = {}) {
+      cancelAnimationFrame(pendingCategoryScroll);
+      pendingCategoryScroll = 0;
       // Close first so both native and older browsers allow only one open group.
       groups.forEach(group => { if (group !== selected) group.open = false; });
       if (selected && !selected.hidden) selected.open = true;
       syncNavigation();
+      if (scroll && selected && selected.open && !selected.hidden) scrollToGroupTitle(selected);
     }
 
     groups.forEach(group => {
       group.querySelector('summary').addEventListener('click', event => {
         event.preventDefault();
-        openGroup(group.open ? null : group);
+        openGroup(group.open ? null : group, { scroll: true });
       });
       group.addEventListener('toggle', syncNavigation);
     });
@@ -507,8 +529,7 @@
       const group = target?.matches('.group') ? target : target?.closest('.group');
       if (!group) return;
       if (search.value) { search.value = ''; updateResults(); }
-      openGroup(group);
-      requestAnimationFrame(() => target.scrollIntoView({ block: 'start' }));
+      openGroup(group, { scroll: true });
     }
 
     navLinks.forEach(link => {
